@@ -28,7 +28,7 @@ const OrderStripe = async (req, res) => {
         cancel_url: "http://localhost:3000/cancel",
     });
 
-    // console.log(session);
+    console.log(session, 'SESSIONMADE');
 
     let obj = {
 
@@ -49,7 +49,7 @@ const OrderStripe = async (req, res) => {
 
     await orderSchema.create(obj)
 
-    res.json({ id: session.id, frontendstripekey: process.envSTRIPE_FRONT_END_KEY, message: 'obj created successfully!' })
+    res.json({ id: session.id, frontendstripekey: process.env.STRIPE_FRONT_END_KEY, message: 'obj created successfully!' })
 
 }
 
@@ -65,9 +65,7 @@ const PlaceOrders = async (req, res) => {
 
     //this contains all the customer details
     console.log(req.body, 'FROM PLACE ORDER 1'); //we receive data here from stripe coz we've provided this endpoint in webhooks
-    console.log(req.body?.data?.object?.customer_details, 'FROM PLACE ORDER'); //we receive data here from stripe coz we've provided this endpoint in webhooks
-    console.log(req.body?.data?.object?.customer_details, 'req.body?.data?.object?.customer_details');
-
+   
     try {
 
         const result = await orderSchema.findOne(
@@ -82,8 +80,7 @@ const PlaceOrders = async (req, res) => {
             await result.save();
         }
 
-        console.log("------", result, "result");
-
+        
     } catch (error) {
 
         console.log(error);  
