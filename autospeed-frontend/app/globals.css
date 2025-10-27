@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+.hero-section1{
+
+  background-image: url('https://opencart.dostguru.com/AS01/autospeed_01/image/cache/catalog/slider/s1-1920x700.jpg');
+  background-size: cover;
+
+}
+.hero-section2{
+
+  background-image: url('https://opencart.dostguru.com/AS01/autospeed_01/image/cache/catalog/slider/s2-1920x700.jpg');
+  background-size: cover;
+
+}
