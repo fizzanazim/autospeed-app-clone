@@ -32,7 +32,7 @@ const OrderStripe = async (req, res) => {
 
     let obj = {
 
-        order_id: '',
+        order_id: session.id,
         firstname: body.user_info.firstname,
         phone: body.user_info.phone,
         email: body.user_info.email,
@@ -45,7 +45,7 @@ const OrderStripe = async (req, res) => {
         products: body.products,
     }
 
-    console.log(obj, 'obj');
+    // console.log(obj, 'obj');
 
     await orderSchema.create(obj)
 
@@ -64,51 +64,54 @@ const GetOrders = async (req, res) => {
 const PlaceOrders = async (req, res) => {
 
     //this contains all the customer details
-    console.log(req.body, 'FROM PLACE ORDER 1'); //we receive data here from stripe coz we've provided this endpoint in webhooks
+    console.log(req.body, 'req.body'); //we receive data here from stripe coz we've provided this endpoint in webhooks
    
     try {
 
         const result = await orderSchema.findOne(
             {
-                email: req.body?.data?.object?.customer_details?.email
+                order_id: req.body?.data?.object?.id
             }
         )
 
         if (result) {
             result.payment_status = req.body?.data?.object?.payment_status;
-            result.order_id = req.body?.id;
             await result.save();
         }
 
         
     } catch (error) {
 
-        console.log(error);  
+        // console.log(error);  
 
     }
 
 }
 
-// const UpdateOrderStatus = async (req, res)=>{
+const UpdateOrderStatus = async (req, res)=>{
 
-//     await orderSchema.findOneAndUpdate(
-//         {
+    const {orderId, order_status} = req.body
 
-//             email: req.body.orderEmail
+    let result = await orderSchema.findOneAndUpdate(
+        {
 
-//         },
-//         {
+            order_id: orderId
 
-//             $set: {order_status: req.body.status}
+        },
+        {
 
-//         },
-//         {
+            $set: {order_status}
 
-//             new: true
+        },
+        {
 
-//         }
-//     )
+            new: true
 
-// }
+        }
+    )
 
-module.exports = { OrderStripe, GetOrders, PlaceOrders}
+    res.send({message: 'order status updated successfully!', success: true, order_status: result.order_status})
+
+}
+
+module.exports = { OrderStripe, GetOrders, PlaceOrders, UpdateOrderStatus}

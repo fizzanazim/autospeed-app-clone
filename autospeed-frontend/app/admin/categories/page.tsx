@@ -14,6 +14,7 @@ const Categories = () => {
   // ProtectedAdmin()
 
   const [categorydata, setcategorydata] :any = useState(null) 
+  const [screendisplay, setscreendisplay] :any = useState('overflow-scroll') 
 
   useEffect(()=>{
 
@@ -28,14 +29,24 @@ const Categories = () => {
     
   }
 
+  
+    const handledisplay = (display:any)=>{
+
+      screendisplay == 'overflow-hidden'?
+        setscreendisplay('overflow-scroll'):
+        setscreendisplay('overflow-hidden')
+
+      
+    }
+
   return (
 
-    <div className='w-full min-h-screen flex flex-col'>
+    <div className={`w-full h-screen overflow-hidden flex flex-col`}>
       <Navbar/>
-      <div className='flex flex-1'>
+      <div className='flex h-[73%]'>
         <Adminsidebar sideoption = {"categories"}/>
-        <div className='w-[82%]'>
-          {categorydata && <Listing data ={categorydata} getdata = {getdata} />} 
+        <div className={`w-[82%] ${screendisplay}`}>
+          {categorydata && <Listing data ={categorydata} getdata = {getdata} handledisplay = {handledisplay} />} 
         </div>
       </div>
     </div>

@@ -229,17 +229,17 @@ const Products = () => {
         <Adminsidebar sideoption={"products"} />
         <div className='w-[82%] py-15 px-10 flex flex-col h-full gap-10'>
           <div className='flex justify-between items-center'>
-            <h1 className='capitalize text-2xl'>products</h1>
-            <button onClick={addnewproduct} className='border px-3 h-10 cursor-pointer'>Add New Product</button>
+            <h1 className='uppercase text-2xl font-semibold'>products</h1>
+            <button onClick={addnewproduct} className='border px-3 h-10 cursor-pointer border-2 border-red-500 text-red-500'>Add New Product</button>
           </div>
           <div className='w-full'>
             <table className='w-full'>
               <thead>
-                <tr>
-                  <td className='bg-red-100 w-1/4'>Image</td>
-                  <td className='bg-red-200 w-1/4'>PRODUCT NAME</td>
-                  <td className='bg-red-300 w-1/4'>PRICE</td>
-                  <td className='bg-red-400 w-1/4'>ACTION</td>
+                <tr className='font-semibold'>
+                  <td className='w-1/4'>Image</td>
+                  <td className='w-1/4'>PRODUCT NAME</td>
+                  <td className='w-1/4'>PRICE</td>
+                  <td className='w-1/4'>ACTION</td>
                 </tr>
               </thead>
               <tbody>
@@ -253,9 +253,9 @@ const Products = () => {
                       <td>$ {Number(e.proprice).toFixed(2)}</td>
                       <td>
                         <div className="flex gap-3">
-                          <button onClick={() => viewproduct(i)} className='cursor-pointer text-blue-500'>view</button>
-                          <button onClick={() => editproduct(e)} className='cursor-pointer text-blue-900'>edit</button>
-                          <button onClick={() => delproduct(e._id)} className='cursor-pointer text-red-500'>delete</button>
+                          <button onClick={() => viewproduct(i)} className='cursor-pointer capitalize text-blue-500'>view</button>
+                          <button onClick={() => editproduct(e)} className='cursor-pointer capitalize text-blue-900'>edit</button>
+                          <button onClick={() => delproduct(e._id)} className='cursor-pointer capitalize text-red-500'>delete</button>
                         </div>
                       </td>
                     </tr>

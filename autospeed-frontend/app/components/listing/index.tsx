@@ -4,7 +4,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 // const Listing = ({data}:any, {var-name}:Number) => { //for multiple props with different datatype
-const Listing = ({ data, getdata }: any) => {
+const Listing = ({ data, getdata, handledisplay }: any) => {
     // const Listing = (props:any) => {
 
     //     const { data } = props;
@@ -119,6 +119,7 @@ const Listing = ({ data, getdata }: any) => {
         setCategoryobj(e)
         settempindex(e._id)
         setcategorytext('Edit Category')
+        handledisplay()
 
     }
 
@@ -126,6 +127,7 @@ const Listing = ({ data, getdata }: any) => {
 
         setDisplayaddproduct('hidden')
         setDisplayoverlay('hidden')
+        handledisplay()
 
     }
 
@@ -145,15 +147,14 @@ const Listing = ({ data, getdata }: any) => {
     return (
         <div className='py-15 px-10 flex flex-col h-full gap-10'>
             <div className='flex justify-between w-full'>
-                <h1 className='capitalize'>CATEGORIES</h1>
-                <button onClick={handlenewcategory} className='px-10 h-10 border cursor-pointer'>ADD NEW CATEGORY</button>
+                <h1 className='capitalize font-semibold text-2xl'>CATEGORIES</h1>
+                <button onClick={handlenewcategory} className='px-10 h-10 border-2 border-red-500 text-red-500 cursor-pointer'>ADD NEW CATEGORY</button>
             </div>
 
             {/* OVERLAY */}
             <div onClick={handleoverlay} className={`${displayoverlay} w-full h-screen bg-[rgba(100,100,100,0.2)] absolute top-0 left-0`}></div>
             <div className={`${displayaddproduct} py-10 px-10 flex flex-col bg-white items-center gap-10 absolute top-1/2 left-1/2 -translate-1/2`}>
-                <input onChange={onchangehandler} className='border h-10 px-10' name='catname' value={categoryobj.catname} type="text" placeholder='Enter Category Name' />
-                {/* <label htmlFor="images" className='font-bold cursor-pointer'>Click here to add image</label> */}
+                <input onChange={onchangehandler} className='border h-10 px-2' name='catname' value={categoryobj.catname} type="text" placeholder='Enter Category Name' />
                 <input onChange={onchangeimage} id='images' type="file" />
                 <button onClick={storecategory} className='border h-10 px-10 cursor-pointer'>{categorytext}</button>
             </div>
@@ -178,8 +179,8 @@ const Listing = ({ data, getdata }: any) => {
                                     <td>{e.catname}</td>
                                     <td>
                                         <div className="flex gap-3">
-                                            <button onClick={() => editcategory(e)} className='cursor-pointer text-blue-900'>edit</button>
-                                            <button onClick={()=>{delcategory(e._id)}} className='cursor-pointer text-red-500'>delete</button>
+                                            <button onClick={() => editcategory(e)} className='cursor-pointer text-blue-900 capitalize'>edit</button>
+                                            <button onClick={()=>{delcategory(e._id)}} className='cursor-pointer text-red-500 capitalize'>delete</button>
                                         </div>
                                     </td>
                                 </tr>

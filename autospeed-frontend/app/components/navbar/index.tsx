@@ -69,7 +69,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className={`w-full md:min-h-20 shadow relative`}>
+        <div className={`w-full h-[27%] shadow relative bg-white`}>
             <div className='h-9 text-white flex bg-black items-center justify-between px-20'>
                 <div className='flex items-center text-sm min-w-1/2'>
                     <h2 className='px-3'>Welcome to Autoparts online Store</h2>
@@ -150,10 +150,10 @@ const Navbar = () => {
                     <h2 className='flex items-center h-full gap-1 text-sm hover:text-red-500 cursor-pointer duration-200'><TfiLightBulb />SPECIAL UP TO 30% OFF AL ITEMS</h2>
                 </div>
             </div>
-            <div onClick={handlesidebar} className={`${sidebardisplay} z-30 h-screen ${screendisplay} w-full bg-[rgba(100,100,100,0.3)] absolute top-0 left-0`}></div>
+            {/* <div onClick={handlesidebar} className={`${sidebardisplay} z-30 h-screen ${screendisplay} w-full bg-[rgba(100,100,100,0.3)] absolute top-0 left-0`}></div>
             <div className={`${sidebardisplay} w-[30%] min-h-screen absolute z-30 top-0 right-0`}>
                 <Sidebar />
-            </div>
+            </div> */}
         </div>
     )
 }
