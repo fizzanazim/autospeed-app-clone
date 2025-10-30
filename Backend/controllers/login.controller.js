@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const loginSchema = require('../schema/login.schema')
+const dotenv = require('dotenv')
+
+dotenv.config({path: './.env'})
 
 
 const PostUSerLoginInfo = async (req, res) => {
